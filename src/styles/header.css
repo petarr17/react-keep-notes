@@ -1,0 +1,69 @@
+.header {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.header h1 {
+  color: rgb(95, 94, 94);
+}
+
+.input-form {
+  background-color: rgb(127, 161, 255);
+  width: 40%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 1px 3px 5px rgb(0 0 0 / 50%);
+  padding: 15px;
+  gap: 15px;
+}
+
+.closed {
+  display: none;
+}
+
+input {
+  outline: none;
+}
+
+.note-inputs {
+  display: block;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+.buttons-div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttons-div button,
+.buttons-div input {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.buttons-div .submit-btn {
+  background-color: rgb(67, 117, 253);
+  color: white;
+}
+
+.buttons-div .submit-btn:hover {
+  background-color: white;
+  color: rgb(67, 117, 253);
+}
+
+.buttons-div .close-btn {
+  background-color: rgb(129, 129, 129);
+  color: white;
+}
+.buttons-div .close-btn:hover {
+  background-color: white;
+  color: rgb(129, 129, 129);
+}

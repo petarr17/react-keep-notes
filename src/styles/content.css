@@ -1,0 +1,14 @@
+.content {
+  width: 80%;
+  margin: 60px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.appear {
+  font-weight: 300;
+  color: gray;
+}
