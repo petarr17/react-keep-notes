@@ -1,9 +1,16 @@
-import React from "react";
+export default function colorPicker(e, id, setNotes) {
+  const color = e.target.getAttribute("color-name");
 
-export default function colorPicker(e) {
-  e.preventDefault();
-  let id = e.target.closest(".note").getAttribute("data-note");
-  let colorName = e.target.getAttribute("color-name");
-  // colorPicker(id, colorName);
-  console.log(id, colorName);
+  console.log(typeof color);
+
+  function findID(element) {
+    if (element.id === id) return true;
+  }
+
+  setNotes((prev) => {
+    let index = prev.findIndex(findID);
+    const clone = structuredClone(prev);
+    clone[index].color = color;
+    return clone;
+  });
 }

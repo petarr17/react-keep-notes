@@ -1,5 +1,13 @@
-export default function removeNote(e, newDisplay) {
-  let id = e.target.closest(".note").getAttribute("data-note");
-  localStorage.removeItem(id);
-  newDisplay((prev) => prev + 1);
+export default function removeNote(id, setNotes) {
+  function findID(element) {
+    if (element.id === id) return true;
+  }
+
+  setNotes((prev) => {
+    let index = prev.findIndex(findID);
+    const clone = structuredClone(prev);
+    clone.splice(index, 1);
+
+    return clone;
+  });
 }

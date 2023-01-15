@@ -1,5 +1,3 @@
-import React from "react";
-
 function Open(setIsActive) {
   setIsActive(true);
 }

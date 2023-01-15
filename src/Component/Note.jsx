@@ -4,7 +4,9 @@ import removeNote from "../utils/removeNote";
 import "../styles/note.css";
 
 export default function Note(props) {
-  let obj = JSON.parse(localStorage.getItem(props.id));
+  let obj = props.obj;
+
+  const color = `note ${props.obj.color}`;
 
   if (obj.title.trim() === "") obj.title = "(no title)";
   if (obj.note.trim() === "") obj.note = "(no description)";
@@ -24,7 +26,7 @@ export default function Note(props) {
   });
 
   return (
-    <div className="note" data-note={props.id}>
+    <div className={color} data-note={props.id}>
       <p className="title">{obj.title}</p>
       <p className="noteContent">{obj.note}</p>
       <div className="labelsDiv">{labels}</div>
@@ -32,34 +34,34 @@ export default function Note(props) {
         <i
           className="fas fa-trash trash"
           name="5"
-          onClick={(event) => removeNote(event, props.newDisplay)}
+          onClick={() => removeNote(props.id, props.setNotes)}
         ></i>
         <i className="fas fa-palette pallete" name="4">
           <div className="colorDiv" name="4">
             <div
               className="color-circle"
-              color-name="white"
-              onClick={colorPicker}
+              color-name="blue"
+              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="purple"
-              onClick={colorPicker}
+              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="orange"
-              onClick={colorPicker}
+              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
             ></div>
             <div
               className="color-circle"
-              color-name="teal"
-              onClick={colorPicker}
+              color-name="bordeaux"
+              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="green"
-              onClick={colorPicker}
+              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
             ></div>
           </div>
         </i>

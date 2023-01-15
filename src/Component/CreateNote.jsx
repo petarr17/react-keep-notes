@@ -19,7 +19,7 @@ export default function CreateNote(props) {
       title.current,
       note.current,
       labels.current,
-      props.newDisplay
+      props.setNotes
     );
 
     // props.updateChanged((prev) => prev + 1);

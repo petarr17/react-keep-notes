@@ -3,30 +3,21 @@ import Note from "./Note";
 import "../styles/content.css";
 
 export default function NotesBox(props) {
-  const [arrayNotes, updateArr] = React.useState([]);
+  let reversedArr = props.notes;
 
-  React.useEffect(() => {
-    let localkeys = Object.keys(localStorage);
-    let arr = [];
-    localkeys.forEach(function (l) {
-      l = parseInt(l);
-      arr.push(l);
-    });
+  reversedArr.sort(function (a, b) {
+    return b.id - a.id;
+  });
 
-    arr.sort(function (a, b) {
-      return b - a;
-    });
-
-    updateArr(arr);
-  }, [props.display]);
-
-  let notes = arrayNotes.map((id) => {
-    return <Note key={id} id={id} newDisplay={props.newDisplay} />;
+  let notes = reversedArr.map((obj) => {
+    return (
+      <Note key={obj.id} id={obj.id} obj={obj} setNotes={props.setNotes} />
+    );
   });
 
   return (
     <div className="content">
-      {arrayNotes.length === 0 && (
+      {props.notes.length === 0 && (
         <h1 className="appear">Notes you add appear here</h1>
       )}
       {notes}
