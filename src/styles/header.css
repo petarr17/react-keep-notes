@@ -67,3 +67,9 @@ input {
   background-color: white;
   color: rgb(129, 129, 129);
 }
+
+@media screen and (max-width: 600px) {
+  .input-form {
+    width: 80%;
+  }
+}

@@ -6,6 +6,13 @@ import EditNote from "./Component/EditNote";
 function App() {
   const [notes, setNotes] = useState([]);
   const [editState, displayEdit] = useState(false);
+  const [titleState, setTitleState] = useState({
+    id: "",
+    title: "",
+    note: "",
+    labels: [],
+    color: "",
+  });
 
   useEffect(() => {
     const obj = JSON.parse(window.localStorage.getItem("notes"));
@@ -22,8 +29,19 @@ function App() {
   return (
     <div className="App">
       <CreateNote setNotes={setNotes} />
-      <NotesBox notes={notes} setNotes={setNotes} displayEdit={displayEdit} />
-      <EditNote editState={editState} displayEdit={displayEdit} />
+      <NotesBox
+        notes={notes}
+        setNotes={setNotes}
+        displayEdit={displayEdit}
+        setTitleState={setTitleState}
+      />
+      <EditNote
+        editState={editState}
+        displayEdit={displayEdit}
+        titleState={titleState}
+        setTitleState={setTitleState}
+        setNotes={setNotes}
+      />
     </div>
   );
 }

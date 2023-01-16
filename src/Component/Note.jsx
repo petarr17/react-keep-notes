@@ -33,7 +33,14 @@ export default function Note(props) {
       !e.target.classList.contains("color-circle") &&
       !e.target.classList.contains("colorDiv")
     )
-      props.displayEdit(obj.title);
+      props.displayEdit(true);
+    props.setTitleState({
+      id: props.id,
+      title: obj.title,
+      note: obj.note,
+      labels: obj.labels.join(","),
+      color: obj.color,
+    });
   }
 
   return (

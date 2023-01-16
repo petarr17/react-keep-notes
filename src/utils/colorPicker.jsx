@@ -1,8 +1,6 @@
 export default function colorPicker(e, id, setNotes) {
   const color = e.target.getAttribute("color-name");
 
-  console.log(typeof color);
-
   function findID(element) {
     if (element.id === id) return true;
   }
