@@ -1,0 +1,78 @@
+[data="modal"] {
+  display: block;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 20;
+}
+/* .displayBlock {
+  display: block;
+} */
+[data="overlay"] {
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+[data="editDiv"] {
+  position: relative;
+  margin: 100px auto;
+  width: 40%;
+  padding: 20px 10px;
+  background-color: white;
+  z-index: 10;
+}
+
+[data="editTitle"] {
+  border: 0;
+  font-size: 20px;
+  color: #5f6368;
+  font-weight: 600;
+  outline: none;
+}
+[data="editContent"] {
+  border: 0;
+  font-size: 15px;
+  color: #5f6368;
+  font-weight: 600;
+  outline: none;
+}
+[data="editLabels"] {
+  margin-top: 20px;
+  border: 0;
+  font-size: 10px;
+  color: #5f6368;
+  font-weight: 600;
+  font-style: italic;
+  outline: none;
+}
+[data="submitDiv"] {
+  display: flex;
+  justify-content: end;
+}
+[data="submit"] {
+  padding: 0.75em 1.5em;
+  background-color: #007bff;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+[data="closeModal"] {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  [data="modal"] [data="editDiv"] {
+    width: 90%;
+  }
+}

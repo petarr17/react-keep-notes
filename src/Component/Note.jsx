@@ -25,8 +25,19 @@ export default function Note(props) {
     );
   });
 
+  function showEdit(e) {
+    if (
+      e.currentTarget.classList.contains("note") &&
+      !e.target.classList.contains("iconsDiv") &&
+      !e.target.classList.contains("fas") &&
+      !e.target.classList.contains("color-circle") &&
+      !e.target.classList.contains("colorDiv")
+    )
+      props.displayEdit(obj.title);
+  }
+
   return (
-    <div className={color} data-note={props.id}>
+    <div className={color} data-note={props.id} onClick={(e) => showEdit(e)}>
       <p className="title">{obj.title}</p>
       <p className="noteContent">{obj.note}</p>
       <div className="labelsDiv">{labels}</div>

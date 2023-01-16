@@ -21,8 +21,6 @@ export default function CreateNote(props) {
       labels.current,
       props.setNotes
     );
-
-    // props.updateChanged((prev) => prev + 1);
   }
 
   return (
