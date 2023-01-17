@@ -29,4 +29,10 @@
   .content {
     margin: 20px auto;
   }
+  .note .iconsDiv {
+    display: flex;
+  }
+  .iconsDiv .pallete .colorDiv {
+    flex-direction: column;
+  }
 }
