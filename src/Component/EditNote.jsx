@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import editFunction from "../utils/editFunction";
+import InputComponent from "./InputComponent";
 import "../styles/edit.css";
 
 export default function EditNote(props) {
+  const textAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "0px";
+      const scrollHeight = textAreaRef.current.scrollHeight;
+      textAreaRef.current.style.height = scrollHeight + "px";
+    }
+  }, [props.titleState.note, textAreaRef.current]);
+
   function handleChange(e) {
     const { name, value } = e.target;
     props.setTitleState((prev) => {
@@ -31,30 +42,32 @@ export default function EditNote(props) {
             <p data="closeModal" onClick={() => props.displayEdit(false)}>
               X
             </p>
-            <input
-              type="text"
+            <InputComponent
               placeholder="Title"
               data="editTitle"
               name="title"
+              maxLength="35"
               value={props.titleState.title}
-              onChange={handleChange}
-            />{" "}
+              handleChange={handleChange}
+            />
             <hr />
-            <input
+            <textarea
               type="text"
               placeholder="Take a note"
               data="editContent"
+              autoComplete="off"
               name="note"
               value={props.titleState.note}
+              ref={textAreaRef}
               onChange={handleChange}
             />
-            <input
-              type="text"
+            <InputComponent
               placeholder="Labels(separate with comma)"
               data="editLabels"
               name="labels"
+              maxLength="35"
               value={props.titleState.labels}
-              onChange={handleChange}
+              handleChange={handleChange}
             />
             <div data="submitDiv">
               <button type="submit" data="submit">

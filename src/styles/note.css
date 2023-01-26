@@ -28,9 +28,14 @@
   font-size: 15px;
   font-weight: 700;
   color: white;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .labelsDiv {
+  margin-right: 45px;
   display: flex;
   gap: 2px;
 }

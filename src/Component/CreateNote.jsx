@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import sendToLocal from "../utils/sendToLocal";
-import { Open, Close } from "../utils/noteOpenClose";
+import { open, close } from "../utils/noteOpenClose";
 
 export default function CreateNote(props) {
   const title = useRef(null);
@@ -29,19 +29,24 @@ export default function CreateNote(props) {
       <form className="input-form">
         <input
           type="text"
+          autoComplete="off"
+          maxLength="35"
           ref={title}
           placeholder="Title..."
           className={isActive ? "note-inputs" : "closed"}
         />
         <input
           type="text"
+          autoComplete="off"
           ref={note}
-          onFocus={() => Open(setIsActive)}
+          onFocus={() => open(setIsActive)}
           className="note-inputs"
           placeholder="Take a note..."
         />
         <input
           type="text"
+          autoComplete="off"
+          maxLength="35"
           ref={labels}
           className={isActive ? "note-inputs" : "closed"}
           placeholder="Labels (separate with comma)"
@@ -57,7 +62,7 @@ export default function CreateNote(props) {
             className="close-btn"
             onClick={(e) => {
               e.preventDefault();
-              Close(setIsActive);
+              close(setIsActive);
             }}
           >
             Close

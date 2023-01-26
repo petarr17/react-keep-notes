@@ -16,15 +16,17 @@ function App() {
 
   useEffect(() => {
     const obj = JSON.parse(window.localStorage.getItem("notes"));
-    if (obj === null);
-    else {
-      setNotes(obj);
-    }
+    if (obj !== null) setNotes(obj);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
+
+  useEffect(() => {
+    if (editState) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "auto";
+  }, [editState]);
 
   return (
     <div className="App">

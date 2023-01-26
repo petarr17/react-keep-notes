@@ -1,29 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import colorPicker from "../utils/colorPicker";
 import removeNote from "../utils/removeNote";
 import "../styles/note.css";
 
-export default function Note(props) {
-  let obj = props.obj;
+export default function Note({
+  id,
+  obj,
+  setNotes,
+  displayEdit,
+  setTitleState,
+}) {
+  const [title, setTitle] = useState("");
+  const [note, setNote] = useState("");
+  const [labelsSt, setLabels] = useState([]);
+  const [color, setColor] = useState("note");
 
-  const color = `note ${props.obj.color}`;
+  useEffect(() => {
+    let newTitle = obj.title;
+    let newNote = obj.note;
 
-  if (obj.title.trim() === "") obj.title = "(no title)";
-  if (obj.note.trim() === "") obj.note = "(no description)";
+    const newColor = `note ${obj.color}`;
 
-  let labelClass = "label";
+    if (obj.title.trim() === "") newTitle = "(no title)";
+    if (obj.note.trim() === "") newNote = "(no description)";
 
-  if (obj.labels.length === 1 && obj.labels[0] === "") {
-    labelClass = "emptyLabel";
-  }
+    let labelClass = "label";
 
-  const labels = obj.labels.map((lbl) => {
-    return (
-      <div key={lbl} className={labelClass}>
-        {lbl}
-      </div>
-    );
-  });
+    if (obj.labels.length === 1 && obj.labels[0] === "") {
+      labelClass = "emptyLabel";
+    }
+
+    let i = 0;
+    const labels = obj.labels.map((lbl) => {
+      i++;
+      return (
+        <div key={i} className={labelClass}>
+          {lbl}
+        </div>
+      );
+    });
+    setTitle(newTitle);
+    setNote(newNote);
+    setLabels(labels);
+    setColor(newColor);
+  }, [obj]);
 
   function showEdit(e) {
     if (
@@ -33,9 +53,9 @@ export default function Note(props) {
       !e.target.classList.contains("color-circle") &&
       !e.target.classList.contains("colorDiv")
     )
-      props.displayEdit(true);
-    props.setTitleState({
-      id: props.id,
+      displayEdit(true);
+    setTitleState({
+      id: id,
       title: obj.title,
       note: obj.note,
       labels: obj.labels.join(","),
@@ -44,42 +64,42 @@ export default function Note(props) {
   }
 
   return (
-    <div className={color} data-note={props.id} onClick={(e) => showEdit(e)}>
-      <p className="title">{obj.title}</p>
-      <p className="noteContent">{obj.note}</p>
-      <div className="labelsDiv">{labels}</div>
+    <div className={color} data-note={id} onClick={(e) => showEdit(e)}>
+      <p className="title">{title}</p>
+      <p className="noteContent">{note}</p>
+      <div className="labelsDiv">{labelsSt}</div>
       <div className="iconsDiv">
         <i
           className="fas fa-trash trash"
           name="5"
-          onClick={() => removeNote(props.id, props.setNotes)}
+          onClick={() => removeNote(id, setNotes)}
         ></i>
         <i className="fas fa-palette pallete" name="4">
           <div className="colorDiv" name="4">
             <div
               className="color-circle"
               color-name="blue"
-              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
+              onClick={(e) => colorPicker(e, id, setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="purple"
-              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
+              onClick={(e) => colorPicker(e, id, setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="orange"
-              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
+              onClick={(e) => colorPicker(e, id, setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="bordeaux"
-              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
+              onClick={(e) => colorPicker(e, id, setNotes)}
             ></div>
             <div
               className="color-circle"
               color-name="green"
-              onClick={(e) => colorPicker(e, props.id, props.setNotes)}
+              onClick={(e) => colorPicker(e, id, setNotes)}
             ></div>
           </div>
         </i>

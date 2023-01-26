@@ -26,6 +26,7 @@
 }
 
 [data="editTitle"] {
+  margin-right: 20px;
   border: 0;
   font-size: 20px;
   color: #5f6368;
@@ -36,7 +37,10 @@
   border: 0;
   font-size: 15px;
   color: #5f6368;
+  max-width: 100%;
   font-weight: 600;
+  height: 115px;
+  resize: vertical;
   outline: none;
 }
 [data="editLabels"] {

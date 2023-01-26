@@ -3,30 +3,23 @@ import Note from "./Note";
 import searchFunction from "../utils/searchFunction";
 import "../styles/content.css";
 
-export default function NotesBox(props) {
-  let reversedArr = props.notes;
+export default function NotesBox({
+  notes,
+  setNotes,
+  displayEdit,
+  setTitleState,
+}) {
   const [query, setQuery] = React.useState("");
+  const [displayNotes, setDisplayNotes] = React.useState([]);
 
-  reversedArr.sort(function (a, b) {
-    return b.id - a.id;
-  });
-
-  let notes = searchFunction(reversedArr, query).map((obj) => {
-    return (
-      <Note
-        key={obj.id}
-        id={obj.id}
-        obj={obj}
-        setNotes={props.setNotes}
-        displayEdit={props.displayEdit}
-        setTitleState={props.setTitleState}
-      />
-    );
-  });
+  React.useEffect(() => {
+    const currentNotes = searchFunction(notes, query);
+    setDisplayNotes(currentNotes);
+  }, [notes, query]);
 
   return (
     <div className="container">
-      {reversedArr.length > 1 && (
+      {displayNotes.length > 1 && (
         <input
           type="text"
           placeholder="Search..."
@@ -35,10 +28,21 @@ export default function NotesBox(props) {
         />
       )}
       <div className="content">
-        {props.notes.length === 0 && (
+        {displayNotes.length === 0 && (
           <h1 className="appear">Notes you add appear here</h1>
         )}
-        {notes}
+        {displayNotes.map((obj) => {
+          return (
+            <Note
+              key={obj.id}
+              id={obj.id}
+              obj={obj}
+              setNotes={setNotes}
+              displayEdit={displayEdit}
+              setTitleState={setTitleState}
+            />
+          );
+        })}
       </div>
     </div>
   );
